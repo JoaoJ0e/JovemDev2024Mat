@@ -13,28 +13,22 @@ public class Ex8 {
 		for (int i = qntOperacoes; i > 0; i--) {
 			char op = JOptionPane.showInputDialog("(D)epósito ou (R)etirada?").toLowerCase().charAt(0);
 			
-			
-			// Valida a valorDaOperacao
-			if (op != 'd' && op != 'r') {
-				JOptionPane.showMessageDialog(null, "Opção inválida! Use (D) ou (R)");
-				i += 1;
-			} else {
-				if (op == 'd') {
-				valorDaOperacao = Double.parseDouble(JOptionPane.showInputDialog("Quantos R$ você vai depositar?"));
-				} else {
-					valorDaOperacao = Double.parseDouble(JOptionPane.showInputDialog("Quantos R$ você vai sacar?"));
-				}
-				
-				// Adiciona/subtrai o valor do saldo
-				if (op == 'd') {
-					saldo += valorDaOperacao;
-				} else {
-					saldo -= valorDaOperacao;
-				}
-				System.out.println("R$ "+saldo);
+			// Valida o valorDaOperacao
+			while (op != 'd' && op != 'r') {
+				op = JOptionPane.showInputDialog("(D)epósito ou (R)etirada?").toLowerCase().charAt(0);
 			}
 			
+			// Realiza a operação desejada
+			if (op == 'd') {
+				valorDaOperacao = Double.parseDouble(JOptionPane.showInputDialog("Quantos R$ você vai depositar?"));
+				saldo += valorDaOperacao;
+			} else {
+				valorDaOperacao = Double.parseDouble(JOptionPane.showInputDialog("Quantos R$ você vai sacar?"));
+				saldo -= valorDaOperacao;
+			}
 			
+	
+			//System.out.println("R$ "+saldo); puramente para debug/logs
 		}
 		JOptionPane.showMessageDialog(null, "Saldo final: R$" + saldo);
 		
