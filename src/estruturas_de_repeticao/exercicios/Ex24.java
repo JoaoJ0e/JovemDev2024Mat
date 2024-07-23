@@ -50,8 +50,7 @@ public class Ex24 {
 				custoMdo = 0;
 				custoMdoPorFunc = 0;
 				
-				custoMdo = Double.parseDouble(JOptionPane
-						.showInputDialog("Custo de Mao de Obra do serviço " + j + " de " + nome + "?"));
+				
 				
 				qntPecas = Integer.parseInt(JOptionPane
 						.showInputDialog("Quantos pecas foram usadas no servico " + j + " de " + nome + "?"));
@@ -66,6 +65,9 @@ public class Ex24 {
 					totalServico += qntPorPeca * custoPorPeca;
 					
 				} // Fim do loop de peca
+				
+				custoMdo = Double.parseDouble(JOptionPane
+						.showInputDialog("Custo de Mao de Obra do serviço " + j + " de " + nome + "?"));
 				
 				totalServico += custoMdo;
 				JOptionPane.showMessageDialog(null, "Total do serviço " + j + " de " + nome + ": R$" + totalServico);
