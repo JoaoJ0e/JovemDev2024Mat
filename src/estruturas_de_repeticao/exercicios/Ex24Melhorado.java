@@ -2,7 +2,7 @@ package estruturas_de_repeticao.exercicios;
 
 import javax.swing.JOptionPane;
 
-public class Ex24 {
+public class Ex24Melhorado {
 
 	public static void main(String[] args) {
 		/*
@@ -98,23 +98,25 @@ public class Ex24 {
 			
 			totalDoDia += totalPorFunc;
 			
-			
-			if (i == 1) {
+			if (i != 1) {
+
+				if (custoMdoPorFunc > maiorMdo) {
+					nomeFuncMaiorMdo = nome;
+					maiorMdo = custoMdoPorFunc;
+				}
+
+				if (custoMdoPorFunc < menorMdo) {
+					nomeFuncMenorMdo = nome;
+					menorMdo = custoMdoPorFunc;
+				}
+
+			} else {
 				nomeFuncMaiorMdo = nome;
 				maiorMdo = custoMdo;
 				nomeFuncMenorMdo = nome;
 				menorMdo = custoMdo;
 			}
 			
-			if (custoMdoPorFunc > maiorMdo) {
-				nomeFuncMaiorMdo = nome;
-				maiorMdo = custoMdoPorFunc;
-			}
-			
-			if (custoMdoPorFunc < menorMdo) {
-				nomeFuncMenorMdo = nome;
-				menorMdo = custoMdoPorFunc;
-			}
 			
 		} // Fim do loop de funcionario
 		

@@ -15,7 +15,8 @@ public class Ex16 {
 
 		while (continuar) {
 			do {
-				proxAndar = Integer.parseInt(JOptionPane.showInputDialog("Próximo andar?"));
+				proxAndar = Integer.parseInt(JOptionPane.showInputDialog("Próximo andar?"
+															+ "\nAndar Atual:	" + andarAtual));
 			} while (proxAndar < 0);
 
 			if (proxAndar > andarAtual) {
