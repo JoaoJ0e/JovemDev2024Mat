@@ -13,7 +13,7 @@ public class Ex3 {
 			exp *= a;
 		}
 		
-		System.out.println(exp);
+		JOptionPane.showMessageDialog(null, exp);;
 		
 	}
 
