@@ -59,7 +59,7 @@ public class Ex3CadastroTelefone {
 				int pos = 0;
 				do {
 					if (nomeContatos[pos].equals(nomeBusca)) {
-						achou = "Encontrado " + nomeContatos[pos] + " na posição " + pos;
+						achou = "Nome: " + nomeContatos[pos] + "\nTelefone: " + telefoneContatos[pos];
 					}
 					pos++;
 					
@@ -77,7 +77,7 @@ public class Ex3CadastroTelefone {
 				int pos2 = 0;
 				do {
 					if (telefoneContatos[pos2].equals(telefoneBusca)) {
-						achouTelefone = "Encontrado " + telefoneContatos[pos2] + " na posição " + pos2;
+						achouTelefone = "Nome: " + nomeContatos[pos2] + "\nTelefone: " + telefoneContatos[pos2];
 					}
 					pos2++;
 					
