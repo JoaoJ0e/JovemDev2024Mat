@@ -124,7 +124,7 @@ public class Ex1Alunos {
 
 						double media = somaNotas / qtdNotas;
 
-						msgLista += "Media: " + media + "\n";
+						msgLista += String.format("Media: %.2f\n", media);String.format("Media: %.2f\n", media);;
 
 						if (media >= 7) {
 							msgLista += "Status: Aprovado\n\n";
@@ -162,7 +162,7 @@ public class Ex1Alunos {
 
 						double media = somaNotas / qtdNotas;
 
-						msgBusca += "Media: " + media + "\n";
+						msgBusca += String.format("Media: %.2f\n", media);
 
 						if (media >= 7) {
 							msgBusca += "Status: Aprovado\n\n";
@@ -204,7 +204,7 @@ public class Ex1Alunos {
 
 						if (media >= 7) {
 							msgAprov += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
-							msgAprov += "Media: " + media + "\n\n";
+							msgAprov += String.format("Media: %.2f\n", media);;
 						}
 
 					}
@@ -239,7 +239,7 @@ public class Ex1Alunos {
 
 						if (media < 7 && media >= 3) {
 							msgRecup += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
-							msgRecup += "Media: " + media + "\n\n";
+							msgRecup += String.format("Media: %.2f\n", media);;
 						}
 
 					}
@@ -274,7 +274,7 @@ public class Ex1Alunos {
 
 						if (media < 3) {
 							msgReprov += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
-							msgReprov += "Media: " + media + "\n\n";
+							msgReprov += String.format("Media: %.2f\n", media);;
 						}
 
 					}
