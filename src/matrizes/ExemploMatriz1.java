@@ -10,7 +10,7 @@ public class ExemploMatriz1 {
 		String[] linhas = {"Lobisomem", "Bruxa", "Saci", "Mula"};
 		String[] colunas = {"Nova", "Cheia", "Minguante", "Crescente"};
 		
-		Random r = new Random();
+		Random r = new Random();		
 		
 		matriz[0][0] = r.nextInt(99);
 		matriz[0][1] = r.nextInt(99);
