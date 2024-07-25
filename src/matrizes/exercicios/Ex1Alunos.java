@@ -28,6 +28,12 @@ public class Ex1Alunos {
 			Reprovado média <3
 			Recuperação média entre 3 e 7
 		 * 
+		 * 
+		 * Upd 25/07
+		 * Transformei todas as variaveis em uma só
+		 * Melhorei o input inicial com base no Nasser (obrigado pela ideia!)
+		 * 
+		 * 
 		 */
 		
 		String menu = "1 - Cadastrar alunos e suas notas\n" // Feito!
@@ -42,12 +48,14 @@ public class Ex1Alunos {
 		int c = 0;
 
 		String[] alunos = new String[50];
-		int qtdNotas = Integer.parseInt(JOptionPane.showInputDialog("Número de provas para esse semestre?"));
+		int qtdNotas = 0;
 
-		double[][] notasAlunos = new double[alunos.length][qtdNotas];
+		double[][] notasAlunos = null;
 
 		// CASO DE TESTE
         /*
+		
+		qtdNotas = 3;
 		
 		alunos[0] = "Pedro";
 		alunos[1] = "João";
@@ -83,11 +91,19 @@ public class Ex1Alunos {
 		c = 5;
 	    */
 		
+		String msg = "";
+		
 		do {
 			op = Integer.parseInt(JOptionPane.showInputDialog(menu));
 			switch (op) {
 			case 1:
 				// 1 - Cadastrar alunos
+				
+				while (qtdNotas <= 0) {
+					qtdNotas = Integer.parseInt(JOptionPane.showInputDialog("Número de provas para esse semestre?"));
+					notasAlunos = new double[alunos.length][qtdNotas];
+				}
+				
 				if (c < alunos.length) {
 					alunos[c] = JOptionPane.showInputDialog("Nome do aluno nº" + (c + 1));
 
@@ -108,36 +124,34 @@ public class Ex1Alunos {
 
 			case 2:
 				// 2 - Listar alunos (nome, media, situacao)
-				String msgLista = "";
+				msg = "";
 
 				if (c == 0) {
-					msgLista = "Nenhum aluno cadastrado!";
+					msg = "Nenhum aluno cadastrado!";
 				} else {
 
 					for (int i = 0; i < c; i++) {
 						double somaNotas = 0;
-						msgLista += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
+						msg += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
 
 						for (int j = 0; j < qtdNotas; j++) {
 							somaNotas += notasAlunos[i][j];
 						}
 
-						double media = somaNotas / qtdNotas;
+						msg += String.format("Media: %.2f\n", somaNotas / qtdNotas);
 
-						msgLista += String.format("Media: %.2f\n", media);String.format("Media: %.2f\n", media);;
-
-						if (media >= 7) {
-							msgLista += "Status: Aprovado\n\n";
-						} else if (media < 7 && media >= 3) {
-							msgLista += "Status: Em recuperacao\n\n";
+						if (somaNotas / qtdNotas >= 7) {
+							msg += "Status: Aprovado\n\n";
+						} else if (somaNotas / qtdNotas < 7 && somaNotas / qtdNotas >= 3) {
+							msg += "Status: Em recuperacao\n\n";
 						} else {
-							msgLista += "Status: Reprovado\n\n";
+							msg += "Status: Reprovado\n\n";
 						}
 
 					}
 
 				} // fim do else
-				JOptionPane.showMessageDialog(null, msgLista);
+				JOptionPane.showMessageDialog(null, msg);
 				;
 				break;
 
@@ -145,7 +159,7 @@ public class Ex1Alunos {
 				// 3 - Buscar aluno por nome (mostrar nome, media, situacao)
 
 				String nomeBusca = JOptionPane.showInputDialog("Insira um nome para procurar na lista:");
-				String msgBusca = "";
+				msg = "";
 				int pos = 0;
 
 				boolean nomeEncontrado = false;
@@ -154,22 +168,20 @@ public class Ex1Alunos {
 					if (alunos[pos].equals(nomeBusca)) {
 						nomeEncontrado = true;
 						double somaNotas = 0;
-						msgBusca += "Aluno " + (pos + 1) + ": " + alunos[pos] + "\n";
+						msg += "Aluno " + (pos + 1) + ": " + alunos[pos] + "\n";
 
 						for (int j = 0; j < qtdNotas; j++) {
 							somaNotas += notasAlunos[pos][j];
 						}
 
-						double media = somaNotas / qtdNotas;
+						msg += String.format("Media: %.2f\n", somaNotas / qtdNotas);
 
-						msgBusca += String.format("Media: %.2f\n", media);
-
-						if (media >= 7) {
-							msgBusca += "Status: Aprovado\n\n";
-						} else if (media < 7 && media >= 3) {
-							msgBusca += "Status: Em recuperacao\n\n";
+						if (somaNotas / qtdNotas >= 7) {
+							msg += "Status: Aprovado\n\n";
+						} else if (somaNotas / qtdNotas < 7 && somaNotas / qtdNotas >= 3) {
+							msg += "Status: Em recuperacao\n\n";
 						} else {
-							msgBusca += "Status: Reprovado\n\n";
+							msg += "Status: Reprovado\n\n";
 						}
 
 					}
@@ -178,19 +190,19 @@ public class Ex1Alunos {
 				} while (pos < c && !nomeEncontrado);
 
 				if (!nomeEncontrado) {
-					msgBusca = "Nome nao encontrado!";
+					msg = "Nome nao encontrado!";
 				}
 
-				JOptionPane.showMessageDialog(null, msgBusca);
+				JOptionPane.showMessageDialog(null, msg);
 
 				break;
 
 			case 4:
 				// 4 - Listar alunos Aprovados (mostrar nomes)
-				String msgAprov = "Lista de alunos aprovados: \n";
+				msg= "Lista de alunos aprovados: \n";
 
 				if (c == 0) {
-					msgAprov = "Nenhum aluno cadastrado!";
+					msg = "Nenhum aluno cadastrado!";
 				} else {
 
 					for (int i = 0; i < c; i++) {
@@ -200,32 +212,30 @@ public class Ex1Alunos {
 							somaNotas += notasAlunos[i][j];
 						}
 
-						double media = somaNotas / qtdNotas;
-
-						if (media >= 7) {
-							msgAprov += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
-							msgAprov += String.format("Media: %.2f\n", media);;
+						if (somaNotas / qtdNotas >= 7) {
+							msg += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
+							msg += String.format("Media: %.2f\n", somaNotas / qtdNotas);;
 						}
 
 					}
 
 				}
 
-				if (msgAprov.equals("Lista de alunos aprovados: \n")) {
-					msgAprov = "Nenhum aluno cadastrado esta aprovado";
+				if (msg.equals("Lista de alunos aprovados: \n")) {
+					msg = "Nenhum aluno cadastrado esta aprovado";
 				}
 
-				JOptionPane.showMessageDialog(null, msgAprov);
+				JOptionPane.showMessageDialog(null, msg);
 
 				break;
 
 			case 5:
 				// 5 - Listar alunos em Recuperação (mostrar nomes)
 
-				String msgRecup = "Lista de alunos em Recuperacao: \n";
+				msg = "Lista de alunos em Recuperacao: \n";
 
 				if (c == 0) {
-					msgRecup = "Nenhum aluno cadastrado!";
+					msg = "Nenhum aluno cadastrado!";
 				} else {
 
 					for (int i = 0; i < c; i++) {
@@ -235,32 +245,30 @@ public class Ex1Alunos {
 							somaNotas += notasAlunos[i][j];
 						}
 
-						double media = somaNotas / qtdNotas;
-
-						if (media < 7 && media >= 3) {
-							msgRecup += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
-							msgRecup += String.format("Media: %.2f\n", media);;
+						if (somaNotas / qtdNotas < 7 && somaNotas / qtdNotas >= 3) {
+							msg += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
+							msg += String.format("Media: %.2f\n", somaNotas / qtdNotas);;
 						}
 
 					}
 
 				}
 
-				if (msgRecup.equals("Lista de alunos em Recuperacao: \n")) {
-					msgRecup = "Nenhum aluno cadastrado esta em recuperacao";
+				if (msg.equals("Lista de alunos em Recuperacao: \n")) {
+					msg = "Nenhum aluno cadastrado esta em recuperacao";
 				}
 
-				JOptionPane.showMessageDialog(null, msgRecup);
+				JOptionPane.showMessageDialog(null, msg);
 
 				break;
 
 			case 6:
 				// 6 - Listar alunos Reprovados (mostrar nomes)
 
-				String msgReprov = "Lista de alunos reprovados: \n";
+				msg = "Lista de alunos reprovados: \n";
 
 				if (c == 0) {
-					msgReprov = "Nenhum aluno cadastrado!";
+					msg = "Nenhum aluno cadastrado!";
 				} else {
 
 					for (int i = 0; i < c; i++) {
@@ -269,23 +277,21 @@ public class Ex1Alunos {
 						for (int j = 0; j < qtdNotas; j++) {
 							somaNotas += notasAlunos[i][j];
 						}
-
-						double media = somaNotas / qtdNotas;
-
-						if (media < 3) {
-							msgReprov += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
-							msgReprov += String.format("Media: %.2f\n", media);;
+						
+						if (somaNotas / qtdNotas < 3) {
+							msg += "Aluno " + (i + 1) + ": " + alunos[i] + "\n";
+							msg += String.format("Media: %.2f\n", somaNotas / qtdNotas);;
 						}
 
 					}
 
 				}
 
-				if (msgReprov.equals("Lista de alunos reprovados: \n")) {
-					msgReprov = "Nenhum aluno cadastrado esta reprovado";
+				if (msg.equals("Lista de alunos reprovados: \n")) {
+					msg = "Nenhum aluno cadastrado esta reprovado";
 				}
 
-				JOptionPane.showMessageDialog(null, msgReprov);
+				JOptionPane.showMessageDialog(null, msg);
 
 				break;
 
