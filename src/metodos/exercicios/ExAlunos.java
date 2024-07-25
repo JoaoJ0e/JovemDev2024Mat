@@ -37,30 +37,30 @@ public class ExAlunos {
 		
 		// CASO DE TESTE
 		
-//		Aluno a = new Aluno();
-//
-//		a.nome = "Pedro";
-//		a.notas.add(7.8);
-//		a.notas.add(8.6);
-//		a.notas.add(9.4);
-//		alunos.add(a);
-//		
-//		Aluno b = new Aluno();
-//
-//		b.nome = "Genivaldo";
-//		b.notas.add(4.3);
-//		b.notas.add(5.6);
-//		b.notas.add(6.7);
-//		alunos.add(b);
-//
-//		Aluno c = new Aluno();
-//
-//		c.nome = "Reprovadinho Junior";
-//		c.notas.add(1.1);
-//		c.notas.add(3.3);
-//		c.notas.add(2.6);
-//		alunos.add(c);
-//		
+		Aluno a = new Aluno();
+
+		a.nome = "Pedro";
+		a.notas.add(7.8);
+		a.notas.add(8.6);
+		a.notas.add(9.4);
+		alunos.add(a);
+		
+		Aluno b = new Aluno();
+
+		b.nome = "Genivaldo";
+		b.notas.add(4.3);
+		b.notas.add(5.6);
+		b.notas.add(6.7);
+		alunos.add(b);
+
+		Aluno c = new Aluno();
+
+		c.nome = "Reprovadinho Junior";
+		c.notas.add(1.1);
+		c.notas.add(3.3);
+		c.notas.add(2.6);
+		alunos.add(c);
+		
 		
 		int op = 0;
 
@@ -74,7 +74,14 @@ public class ExAlunos {
 				JOptionPane.showMessageDialog(null, listaAlunos(alunos));
 				break;
 			case 3:
-				JOptionPane.showMessageDialog(null, mostraAluno(alunos, encontraPosicao(alunos)));
+				// Primeiro jeito que fiz, vou deixar comentado
+				//JOptionPane.showMessageDialog(null, mostraAluno(alunos, encontraPosicao(alunos)));
+				String lista = "";
+				for (Aluno al : buscaPorNome(alunos)) {
+					 lista += "\nNome: " + al.nome + "\nMedia: " + calculaMedia(al.notas); 
+				}
+				JOptionPane.showMessageDialog(null, lista);
+				//JOptionPane.showMessageDialog(null, buscaPorNome(alunos));
 				break;
 			case 4:
 				JOptionPane.showMessageDialog(null, listaAprovados(alunos));
@@ -167,6 +174,29 @@ public class ExAlunos {
 		return lista;
 	}
 
+	public static ArrayList<Aluno> buscaPorNome(ArrayList<Aluno> alunos) {
+		ArrayList<Aluno> busca = new ArrayList<Aluno>();
+		String nomeBusca = JOptionPane.showInputDialog("Nome para procurar:");
+		
+		int c = 0;
+		do {
+			if (alunos.get(c).nome.equals(nomeBusca)) {
+				busca.add(alunos.get(c));
+			}
+			c++;
+		} while (c < alunos.size());
+		
+		if (busca.size() <=0 ) {
+			Aluno erro = new Aluno();
+			erro.nome = "Aluno não encontrado/Aluno não cadastrado";
+			erro.notas.add(0.0);
+			busca.add(erro);
+		}
+		
+		
+		return busca;
+	}
+	
 	public static int encontraPosicao(ArrayList<Aluno> alunos) {
 		String nomeBusca = JOptionPane.showInputDialog("Nome para procurar:");
 		boolean nomeEncontrado = false;
