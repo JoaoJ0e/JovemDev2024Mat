@@ -76,12 +76,13 @@ public class ExAlunos {
 			case 3:
 				// Primeiro jeito que fiz, vou deixar comentado
 				//JOptionPane.showMessageDialog(null, mostraAluno(alunos, encontraPosicao(alunos)));
+				
 				String lista = "";
 				for (Aluno al : buscaPorNome(alunos)) {
 					 lista += "\nNome: " + al.nome + "\nMedia: " + calculaMedia(al.notas); 
 				}
 				JOptionPane.showMessageDialog(null, lista);
-				//JOptionPane.showMessageDialog(null, buscaPorNome(alunos));
+				
 				break;
 			case 4:
 				JOptionPane.showMessageDialog(null, listaAprovados(alunos));
