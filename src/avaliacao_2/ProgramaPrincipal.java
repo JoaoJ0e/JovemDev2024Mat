@@ -102,7 +102,6 @@ public class ProgramaPrincipal {
 
 	}
 
-	// testar
 	public static int menu() {
 		String menu = "1 - Incluir medicamento\n"
 				+ "2 - Listas todos os medicamentos\n"
@@ -119,7 +118,6 @@ public class ProgramaPrincipal {
 		return op;
 	}
 
-	// testar
 	public static void cadastraMedicamento(ArrayList<Medicamento> meds) {
 
 		if (meds.size() >= 500) {
